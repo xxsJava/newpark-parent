@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <include resource="org/springframework/boot/logging/logback/base.xml"/>
+
+    <contextName>log</contextName>
+
+
+    <logger name="org.springframework.web" level="INFO"/>
+    <logger name="org.springboot.sample" level="TRACE"/>
+
+    <!-- 开发、测试环境、本地 -->
+    <springProfile name="dev,test,local">
+        <logger name="org.springframework.web" level="INFO"/>
+        <logger name="org.springboot.sample" level="INFO"/>
+        <logger name="com.zh" level="DEBUG"/>
+    </springProfile>
+
+    <!-- 生产环境 -->
+    <springProfile name="beta">
+        <logger name="org.springframework.web" level="ERROR"/>
+        <logger name="org.springboot.sample" level="ERROR"/>
+        <logger name="com.newpark" level="INFO"/>
+    </springProfile>
+
+    <appender name="consoleLog" class="ch.qos.logback.core.ConsoleAppender">
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <pattern>${CONSOLE_LOG_PATTERN}</pattern>
+        </layout>
+    </appender>
+
+    <appender name="fileInfoLog" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <encoder>
+            <pattern>${FILE_LOG_PATTERN}</pattern>
+        </encoder>
+        <!--滚动策略-->
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!--路径-->
+            <fileNamePattern>logs/%d.log</fileNamePattern>
+        </rollingPolicy>
+    </appender>
+
+    <!-- values from application.yml -->
+    <springProperty scope="context" name="graylogHost" source="logback.grayLog.host" />
+    <springProperty scope="context" name="graylogPort" source="logback.grayLog.port" />
+    <springProperty scope="context" name="originHost" source="logback.grayLog.originHost" />
+    <springProperty scope="context" name="appName" source="logback.grayLog.appName" />
+    <springProperty scope="context" name="appVersion" source="app.version" />
+
+    <appender name="GELF" class="de.siegmar.logbackgelf.GelfUdpAppender">
+        <graylogHost>${graylogHost}</graylogHost>
+        <graylogPort>${graylogPort}</graylogPort>
+        <encoder class="de.siegmar.logbackgelf.GelfEncoder">
+            <originHost>${originHost}</originHost>
+            <includeRawMessage>false</includeRawMessage>
+            <includeMarker>true</includeMarker>
+            <includeMdcData>true</includeMdcData>
+            <includeCallerData>false</includeCallerData>
+            <includeRootCauseData>false</includeRootCauseData>
+            <includeLevelName>true</includeLevelName>
+            <shortPatternLayout class="ch.qos.logback.classic.PatternLayout">
+                <pattern>%m%nopex</pattern>
+            </shortPatternLayout>
+            <fullPatternLayout class="ch.qos.logback.classic.PatternLayout">
+                <pattern>%m%n</pattern>
+            </fullPatternLayout>
+            <staticField>app_name:${appName}</staticField>
+            <staticField>app_version:${appVersion}</staticField>
+            <staticField>os_arch:${os.arch}</staticField>
+            <staticField>os_name:${os.name}</staticField>
+            <staticField>os_version:${os.version}</staticField>
+            <staticField>uri:%X{uri}</staticField>
+            <staticField>uid:%X{uid}</staticField>
+            <staticField>ip:%X{ip}</staticField>
+        </encoder>
+    </appender>
+
+    <!-- 日志文件记录 -->
+    <root level="INFO">
+        <appender-ref ref="fileInfoLog"/>
+        <appender-ref ref="GELF" />
+    </root>
+
+</configuration>

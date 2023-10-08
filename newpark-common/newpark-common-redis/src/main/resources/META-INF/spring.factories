@@ -1,0 +1,5 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+    com.newpark.redis.config.RedisConfig,\
+    com.newpark.redis.utils.RedisUtils
+
+
