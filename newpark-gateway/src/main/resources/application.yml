@@ -1,4 +1,6 @@
 spring:
+  main:
+    allow-bean-definition-overriding: true
   application:
     name: newpark-geteway
   profiles:
@@ -8,6 +10,12 @@ spring:
     username: root
     password: '12345678'
     driver-class-name: com.mysql.cj.jdbc.Driver
+  redis:
+    database: 1
+    timeout: 1000
+    host: 192.168.13.129
+    port: 36379
+    password:
   cloud:
     nacos:
       discovery:
@@ -21,8 +29,14 @@ spring:
         locator:
           enabled: true
       routes:
+        - id: newpark-sso
+          uri: http://localhost:60000
+          order: 0
+          predicates:
+            - Path=/**
         - id: newpark-test
           uri: http://localhost:60001
           order: 1
           predicates:
             - Path=/findAll/**
+

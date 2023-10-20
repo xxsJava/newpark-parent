@@ -1,6 +1,7 @@
 package com.newpark.base.model.vo;
 
 
+import cn.hutool.core.text.UnicodeUtil;
 import com.newpark.base.enums.ResponseCodeEnum;
 import lombok.Data;
 import lombok.experimental.Accessors;
@@ -24,6 +25,10 @@ public class R<T> implements Serializable {
     private String msg;
 
     private T data;
+
+    public void setMsg(String msg) {
+        this.msg = UnicodeUtil.toUnicode(msg);
+    }
 
     public static <T> R<T> ok() {
         return restResult(null, ResponseCodeEnum.SUCCESS.getCode(), ResponseCodeEnum.SUCCESS.getMsg());
@@ -68,4 +73,5 @@ public class R<T> implements Serializable {
         apiResult.setMsg(msg);
         return apiResult;
     }
+
 }

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.newpark.sso.sys.mapper.SysUserMapper">
+
+    <sql id="all">
+        SELECT
+            u_id,
+            u_phone,
+            u_email,
+            u_pass,
+            u_start_time
+        FROM
+            sys_user
+    </sql>
+
+    <select id="loginFind" parameterType="com.newpark.sso.entity.vo.LoginVo" resultType="com.newpark.sso.sys.entity.SysUser">
+        <include refid="all"></include>
+        <where>
+            u_phone = #{uPhone}
+            and u_pass = #{password}
+            <if test="uEmail != '' and uEmail != null">
+                or u_email = #{uEmail}
+            </if>
+        </where>
+    </select>
+
+    <select id="isUser" parameterType="com.newpark.sso.entity.vo.LoginVo" resultType="com.newpark.sso.sys.entity.SysUser">
+        <include refid="all"></include>
+        <where>
+            <if test="uPhone != '' and uPhone != null">
+                u_phone = #{uPhone}
+            </if>
+            <if test="uEmail != '' and uEmail != null">
+                 u_email = #{uEmail}
+            </if>
+        </where>
+    </select>
+
+</mapper>

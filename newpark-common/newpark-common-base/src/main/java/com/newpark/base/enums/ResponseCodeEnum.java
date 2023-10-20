@@ -1,5 +1,7 @@
 package com.newpark.base.enums;
 
+import cn.hutool.core.text.UnicodeUtil;
+
 /**
  * 业务状态码
  *
@@ -89,6 +91,6 @@ public enum ResponseCodeEnum {
     }
 
     public String getMsg() {
-        return msg;
+        return UnicodeUtil.toUnicode(msg);
     }
 }

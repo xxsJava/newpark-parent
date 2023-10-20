@@ -4,19 +4,13 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>com.xy.newpark</groupId>
-        <artifactId>newpark-parent</artifactId>
+        <groupId>com.newpark.sso</groupId>
+        <artifactId>newpark-sso</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <groupId>com.newpark.sso</groupId>
-    <artifactId>newpark-sso</artifactId>
-    <packaging>pom</packaging>
-    <modules>
-        <module>sso-serivice</module>
-        <module>sso-api</module>
-        <module>sso-ssm</module>
-    </modules>
+    <groupId>com.newpark.ssm</groupId>
+    <artifactId>sso-ssm</artifactId>
 
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
@@ -24,11 +18,4 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
-    <dependencies>
-        <dependency>
-            <groupId>com.alibaba.cloud</groupId>
-            <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
-            <version>2021.0.1.0</version>
-        </dependency>
-    </dependencies>
 </project>

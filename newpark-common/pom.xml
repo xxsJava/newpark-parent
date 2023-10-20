@@ -18,6 +18,7 @@
         <module>newpark-common-log</module>
         <module>newpark-common-redis</module>
         <module>newpark-common-mybatisPlus</module>
+        <module>newpark-common-swagger</module>
     </modules>
 
     <properties>

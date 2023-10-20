@@ -20,14 +20,14 @@
     <dependencies>
         <dependency>
             <groupId>com.newpark.common</groupId>
-            <artifactId>newpark-common-base</artifactId>
+            <artifactId>newpark-common-core</artifactId>
             <version>0.0.1-SNAPSHOT</version>
-            <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>com.newpark.common</groupId>
-            <artifactId>newpark-common-redis</artifactId>
+            <artifactId>newpark-common-base</artifactId>
             <version>0.0.1-SNAPSHOT</version>
+            <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -36,8 +36,20 @@
             <scope>compile</scope>
         </dependency>
         <dependency>
+            <groupId>com.newpark.common</groupId>
+            <artifactId>newpark-common-redis</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.newpark.common</groupId>
+            <artifactId>newpark-common-core</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
             <scope>test</scope>
         </dependency>
 

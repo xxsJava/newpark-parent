@@ -1,0 +1,13 @@
+# Mybatis plus 配置
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  type-aliases-package: com.newpark.sso.sys.entity.*
+  mapper-locations: classpath:mapping/*.xml
+rsa:
+  encrypt:
+    open: false # 是否开启加密 true  or  false
+    showLog: true # 是否打印加解密log true  or  false
+    publicKey: MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAIzybv2MzTfqqhCKrpkZW0iHzVjV4cpzFp30ozJTK6I7DUa4c4/CryIDWWjPkyjEPRNGak1J6QzQOaLYd9g9nOsCAwEAAQ==
+    privateKey: MIIBVQIBADANBgkqhkiG9w0BAQEFAASCAT8wggE7AgEAAkEAjPJu/YzNN+qqEIqumRlbSIfNWNXhynMWnfSjMlMrojsNRrhzj8KvIgNZaM+TKMQ9E0ZqTUnpDNA5oth32D2c6wIDAQABAkA1SETLFxpRZCXMQREGEX7fqW7ogVptFRrctamoEabyGb3nndkor+r6c0TgXZfmzYx+MqBknTma7/kuN1IPfxYZAiEA2NBqtl+8eGliWhCOvpNAd7Luq+5RaSU/A9gMJ6H0Z50CIQCma8mH19d4gfGx3ILAjfoxxagTmvp169Qqrqf6yoLkJwIhAJD1X7OJdLAo/WnsEhQWzY56IprvHp0nGueOBiplXMv9AiEAlSVYccQAuWFLqKkFDWiwZ1bK8Pcdq/z0ImRw6xP/BlUCIAWzKhM+uIfCfz9hB4ASfcacFJUFWJw1jr/0FPWJ2Vio
