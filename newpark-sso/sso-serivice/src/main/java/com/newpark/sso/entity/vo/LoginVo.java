@@ -16,6 +16,7 @@ import javax.validation.constraints.NotNull;
 @Setter
 public class LoginVo {
 
+
     /**
      * @description: 手机号
      **/

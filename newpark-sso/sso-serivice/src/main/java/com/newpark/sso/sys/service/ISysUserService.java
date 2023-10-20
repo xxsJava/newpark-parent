@@ -3,6 +3,7 @@ package com.newpark.sso.sys.service;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.newpark.base.model.vo.R;
 import com.newpark.sso.entity.vo.LoginVo;
+import com.newpark.sso.entity.vo.RegisteredVo;
 import com.newpark.sso.sys.entity.SysUser;
 
 /**
@@ -18,4 +19,9 @@ public interface ISysUserService extends IService<SysUser> {
      * @description: 登录
      **/
     R loginFind(LoginVo loginVo);
+
+    /**
+     * @description: 注册账号
+     **/
+    R registeredUser(RegisteredVo registeredVo);
 }

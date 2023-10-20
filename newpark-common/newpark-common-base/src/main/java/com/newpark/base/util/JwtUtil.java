@@ -30,7 +30,9 @@ public class JwtUtil {
     public static <T> String getToken(Map<String,T> map) {
         JWTCreator.Builder builder = JWT.create();
         map.forEach((k,v)->{
-            builder.withClaim(k, v.toString());
+            if(k != null && v!=null){
+                builder.withClaim(k, v.toString());
+            }
         });
         Calendar instance = Calendar.getInstance();
         instance.add(Calendar.SECOND,60*24*7);

@@ -4,6 +4,7 @@ import cn.shuibo.annotation.EnableSecurity;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 /**
  * @Author xxs18
@@ -13,6 +14,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 @MapperScan("com.newpark.sso.sys.mapper")
 @EnableSecurity
+@EnableTransactionManagement
 public class SsoApp {
     public static void main(String[] args) {
         SpringApplication.run(SsoApp.class,args);

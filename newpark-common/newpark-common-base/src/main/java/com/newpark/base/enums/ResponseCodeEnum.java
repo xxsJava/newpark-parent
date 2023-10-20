@@ -1,6 +1,7 @@
 package com.newpark.base.enums;
 
 import cn.hutool.core.text.UnicodeUtil;
+import lombok.Getter;
 
 /**
  * 业务状态码
@@ -8,6 +9,7 @@ import cn.hutool.core.text.UnicodeUtil;
  * @author jack
  * @date 2023/3/14
  */
+@Getter
 public enum ResponseCodeEnum {
 
     /**
@@ -86,11 +88,4 @@ public enum ResponseCodeEnum {
         this.msg = msg;
     }
 
-    public int getCode() {
-        return code;
-    }
-
-    public String getMsg() {
-        return UnicodeUtil.toUnicode(msg);
-    }
 }

@@ -1,9 +1,12 @@
 package com.newpark.base.enums;
 
+import lombok.Getter;
+
 /**
  * @author jack
  * @date 2023/3/14
  */
+@Getter
 public enum AuthorityCheckLogicalEnum {
     AND(0, "与"),
     OR(1, "或");
@@ -17,13 +20,6 @@ public enum AuthorityCheckLogicalEnum {
         this.desc = desc;
     }
 
-    public Integer getCode() {
-        return code;
-    }
-
-    public String getDesc() {
-        return desc;
-    }
 
 
     public static String getDescByCode(Integer code) {

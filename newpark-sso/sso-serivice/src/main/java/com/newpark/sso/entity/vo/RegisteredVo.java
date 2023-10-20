@@ -8,8 +8,6 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.time.LocalDateTime;
-
 /**
  * @Author xxs18
  * @Description 注册vo
@@ -56,8 +54,22 @@ public class RegisteredVo {
     private String uSex;
 
     /**
-     * @description: 设置的密码
+     * 手机号
+     */
+    @TableField("u_phone")
+    private String uPhone;
+
+    /**
+     * 注册时间
+     */
+    @TableField("u_start_time")
+    private Long uStartTime;
+
+    /**
+     * 密码
      **/
     private String pass;
+
+
 
 }

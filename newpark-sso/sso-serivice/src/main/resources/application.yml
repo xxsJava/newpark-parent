@@ -9,7 +9,7 @@ spring:
   profiles:
     active: dev
   datasource:
-    url: jdbc:mysql://192.168.13.129:3306/newpark?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true&useUnicode=true
+    url: jdbc:mysql://192.168.13.129:3306/newpark?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true&useUnicode=true&allowMultiQueries=true
     username: root
     password: '12345678'
     driver-class-name: com.mysql.cj.jdbc.Driver

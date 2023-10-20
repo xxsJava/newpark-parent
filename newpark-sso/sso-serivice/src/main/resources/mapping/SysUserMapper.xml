@@ -36,4 +36,12 @@
         </where>
     </select>
 
+    <insert id="registeredUser" parameterType="com.newpark.sso.entity.vo.RegisteredVo">
+        INSERT INTO `newpark`.`sys_user` (`u_id`, `u_phone`, `u_pass`, `u_start_time`)
+        VALUES (#{uId}, #{uPhone}, #{pass}, #{uStartTime});
+        INSERT INTO `newpark`.`usr_info` (`u_id`, `u_path`, `u_nikname`, `school_id`, `u_specialty`, `u_sex`)
+        VALUES (#{uId}, #{uPath}, #{uNikname}, #{schoolId}, #{uSpecialty}, #{uSex});
+
+    </insert>
+
 </mapper>

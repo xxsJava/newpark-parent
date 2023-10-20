@@ -2,6 +2,7 @@ package com.newpark.sso.sys.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.newpark.sso.entity.vo.LoginVo;
+import com.newpark.sso.entity.vo.RegisteredVo;
 import com.newpark.sso.sys.entity.SysUser;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -24,4 +25,9 @@ public interface SysUserMapper extends BaseMapper<SysUser> {
      * @description: 用户是否存在
      **/
     SysUser isUser(LoginVo loginVo);
+
+    /**
+     * @description: 注册账号
+     **/
+    Integer registeredUser(RegisteredVo registeredVo);
 }
