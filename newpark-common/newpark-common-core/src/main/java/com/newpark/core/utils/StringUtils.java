@@ -1,9 +1,24 @@
 package com.newpark.core.utils;
 
 import cn.hutool.core.collection.CollectionUtil;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.module.SimpleModule;
+import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
+import com.google.common.collect.Lists;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.Function;
@@ -18,6 +33,31 @@ import java.util.stream.Collectors;
  */
 
 public final class StringUtils {
+
+    private static final ObjectMapper objectMapper = new ObjectMapper();
+
+    private static SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmssSSSS");
+
+    //定义移动端请求的所有可能类型
+    private final static List<String> agentList = Lists.newArrayList("Android", "iPhone", "iPod", "iPad", "Windows Phone", "MQQBrowser");
+
+
+    static {
+        //返回所有字符串
+        objectMapper.setSerializationInclusion(JsonInclude.Include.ALWAYS);
+        //序列化日期
+        JavaTimeModule javaTimeModule = new JavaTimeModule();
+        javaTimeModule.addSerializer(LocalDate.class, new LocalDateSerializer(DateTimeFormatter.ISO_DATE));
+        javaTimeModule.addSerializer(LocalDateTime.class, new LocalDateTimeSerializer(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
+        objectMapper.registerModule(javaTimeModule);
+        //Long类型序列化
+        SimpleModule simpleModule = new SimpleModule();
+        simpleModule.addSerializer(Long.class, ToStringSerializer.instance);
+        simpleModule.addSerializer(Long.TYPE, ToStringSerializer.instance);
+        objectMapper.registerModule(simpleModule);
+    }
+
+
     private StringUtils() {
         throw new Error("工具类不能实例化！");
     }
@@ -302,6 +342,43 @@ public final class StringUtils {
         return null != str;
     }
 
+    /**
+     * * 判断一个对象是否为空
+     *
+     * @param object Object
+     * @return true：为空 false：非空
+     */
+    public static boolean isNull(Object object) {
+        return object == null;
+    }
+
+    /**
+     * * 判断一个对象是否非空
+     *
+     * @param object Object
+     * @return true：非空 false：空
+     */
+    public static boolean isNotNull(Object object) {
+        return !isNull(object);
+    }
+
+    /**
+     * * 判断一个对象是否是数组类型（Java基本型别的数组）
+     *
+     * @param object 对象
+     * @return true：是数组 false：不是数组
+     */
+    public static boolean isArray(Object object) {
+        return isNotNull(object) && object.getClass().isArray();
+    }
+
+    /**
+     * 去空格
+     */
+    public static String trim(String str) {
+        return (str == null ? "" : str.trim());
+    }
+
 
     /**
      * 是否只含有空格
@@ -512,4 +589,75 @@ public final class StringUtils {
         return false;
     }
 
+
+    /**
+     * 转换JSON格式
+     *
+     * @param
+     * @return
+     */
+    public static String toObjectJSON(Object o) {
+        try {
+            return objectMapper.writeValueAsString(o);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+            return "";
+        }
+    }
+
+
+    /**
+     * 生成工单编号
+     *
+     * @param prefix 编号前缀
+     * @return
+     */
+    public static String generateCode(String prefix) {
+        return prefix + sdf.format(System.currentTimeMillis());
+    }
+
+    /**
+     * 任务编号
+     *
+     * @param code 任务编号
+     * @return String
+     */
+    public static String taskCode(String code) {
+
+        String substring = code.substring(2, code.length());
+        String prefix = code.substring(0, 2);
+        int i = Integer.parseInt(substring) + 1;
+        return prefix + String.format("%03d", i);
+    }
+
+    /**
+     * 根据时分秒判断是否存在两位数据
+     *
+     * @param date 时分秒
+     * @return string
+     */
+    public static String getStringDate(int date) {
+
+        String str = "";
+        if (date > 9) {
+            return date + "";
+        } else {
+            return "0" + date;
+        }
+    }
+
+    /**
+     * 获取请求方式
+     *
+     * @param agent 请求头标识
+     * @return 1=pc端/2=移动端
+     */
+    public static Integer getRequestType(String agent) {
+        for (String s : agentList) {
+            if (agent.contains(s)) {
+                return 2;
+            }
+        }
+        return 1;
+    }
 }

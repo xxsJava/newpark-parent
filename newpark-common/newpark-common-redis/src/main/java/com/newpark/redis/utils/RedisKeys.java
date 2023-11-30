@@ -16,7 +16,7 @@ public class RedisKeys {
          * 不同公司生成不同key前缀
          */
         private static String buildKey(String type, Object key) {
-            return "mustang:" + type + ":" + key;
+            return "newpark:" + type + ":" + key;
         }
     }
 
@@ -26,6 +26,18 @@ public class RedisKeys {
     public static class Config {
         public static String key(String key) {
             return Prefix.buildKey("sys:config", key);
+        }
+    }
+
+    /**
+     * 文件分片配置key
+     */
+    public static class ShardingConfig {
+        public static String key(String key) {
+            return Prefix.buildKey("file:sharding", key);
+        }
+        public static String lockKey(String key) {
+            return Prefix.buildKey("file:shardingLock", key);
         }
     }
 

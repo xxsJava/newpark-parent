@@ -42,10 +42,13 @@ public class JwtUtil {
 
     /**
      * 获取token中payload
+     * log.info("解密数据{}",JwtUtil.getToken(tokenVal).getClaim("uId").asString());
      * @param token
      * @return
      */
     public static DecodedJWT getToken(@NotEmpty String token) throws UnsupportedEncodingException {
         return JWT.require(Algorithm.HMAC256(SIGN_CODE)).build().verify(token);
     }
+
+
 }

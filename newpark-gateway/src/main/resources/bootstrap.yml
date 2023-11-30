@@ -1,2 +1,7 @@
-server:
-  port: 50000
+spring:
+  main:
+    allow-bean-definition-overriding: true
+  application:
+    name: newpark-gateway
+  profiles:
+    active: dev

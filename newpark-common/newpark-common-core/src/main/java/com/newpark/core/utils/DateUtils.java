@@ -38,6 +38,14 @@ public class DateUtils extends org.apache.commons.lang3.time.DateUtils {
     }
 
     /**
+     * 获取到时间戳 s
+     * @return
+     */
+    public static Long getTimes(){
+        return new Date().getTime()/1000;
+    }
+
+    /**
      * 2019-11-25T15:25:54+08:00 ==> 2019-11-25 15:25:54
      *
      * @param dateStr

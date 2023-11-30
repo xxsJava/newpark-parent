@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.newpark.base.model.vo.R;
 import com.newpark.sso.entity.vo.LoginVo;
 import com.newpark.sso.entity.vo.RegisteredVo;
+import com.newpark.sso.entity.vo.SmsLoginVo;
 import com.newpark.sso.sys.entity.SysUser;
 
 /**
@@ -24,4 +25,9 @@ public interface ISysUserService extends IService<SysUser> {
      * @description: 注册账号
      **/
     R registeredUser(RegisteredVo registeredVo);
+
+    /**
+     * @description: 验证码登录验证
+     **/
+    R smsLoginFind(SmsLoginVo smsLoginVo);
 }

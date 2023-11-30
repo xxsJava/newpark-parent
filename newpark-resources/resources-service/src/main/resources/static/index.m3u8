@@ -1,0 +1,17 @@
+#EXTM3U
+#EXT-X-VERSION:3
+#EXT-X-TARGETDURATION:66
+#EXT-X-MEDIA-SEQUENCE:0
+#EXTINF:65.100000,
+https://xxs18-test.oss-cn-shanghai.aliyuncs.com/video/output0.ts?Expires=1701271942&OSSAccessKeyId=TMP.3KfixAxYtoTHd91e6aVAM1SLCAzbx2TqbtPhWibCSrwMABPTvzqQ4xRwficTUxgQcuvafvXSxuDdN4wtS6YBuZtiAxppQ8&Signature=tnua1%2ByXWAEMfhHaAn4LBgG5QRM%3D
+#EXTINF:56.100000,
+https://xxs18-test.oss-cn-shanghai.aliyuncs.com/video/output1.ts?Expires=1701271967&OSSAccessKeyId=TMP.3KfixAxYtoTHd91e6aVAM1SLCAzbx2TqbtPhWibCSrwMABPTvzqQ4xRwficTUxgQcuvafvXSxuDdN4wtS6YBuZtiAxppQ8&Signature=5tkZgV29pj%2BPcGptL6dYz%2FnJmO4%3D
+#EXTINF:65.800000,
+https://xxs18-test.oss-cn-shanghai.aliyuncs.com/video/output2.ts?Expires=1701271982&OSSAccessKeyId=TMP.3KfixAxYtoTHd91e6aVAM1SLCAzbx2TqbtPhWibCSrwMABPTvzqQ4xRwficTUxgQcuvafvXSxuDdN4wtS6YBuZtiAxppQ8&Signature=okwgoRxdtNQwH2pwEJiy31hB%2BDk%3D
+#EXTINF:57.533333,
+https://xxs18-test.oss-cn-shanghai.aliyuncs.com/video/output3.ts?Expires=1701271996&OSSAccessKeyId=TMP.3KfixAxYtoTHd91e6aVAM1SLCAzbx2TqbtPhWibCSrwMABPTvzqQ4xRwficTUxgQcuvafvXSxuDdN4wtS6YBuZtiAxppQ8&Signature=jvT8XFtqaQcRqRlENAZ%2BAn27Ftg%3D
+#EXTINF:56.133333,
+https://xxs18-test.oss-cn-shanghai.aliyuncs.com/video/output4.ts?Expires=1701272014&OSSAccessKeyId=TMP.3KfixAxYtoTHd91e6aVAM1SLCAzbx2TqbtPhWibCSrwMABPTvzqQ4xRwficTUxgQcuvafvXSxuDdN4wtS6YBuZtiAxppQ8&Signature=FwyQNwCM%2FhSHWcJxvTGE2%2Bg%2BBG0%3D
+#EXTINF:56.800000,
+https://xxs18-test.oss-cn-shanghai.aliyuncs.com/video/output5.ts?Expires=1701272027&OSSAccessKeyId=TMP.3KfixAxYtoTHd91e6aVAM1SLCAzbx2TqbtPhWibCSrwMABPTvzqQ4xRwficTUxgQcuvafvXSxuDdN4wtS6YBuZtiAxppQ8&Signature=yyUkBdYpDG4n4uO3KK94Za6h9Us%3D
+#EXT-X-ENDLIST

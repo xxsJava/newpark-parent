@@ -1,9 +1,13 @@
 package com.newpark.sso.sys.mapper;
 
+import com.baomidou.mybatisplus.annotation.SqlParser;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.newpark.sso.entity.dto.SysUsrDto;
 import com.newpark.sso.entity.vo.LoginVo;
 import com.newpark.sso.entity.vo.RegisteredVo;
+import com.newpark.sso.entity.vo.SysUsrVo;
 import com.newpark.sso.sys.entity.SysUser;
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 
 /**
@@ -19,15 +23,24 @@ public interface SysUserMapper extends BaseMapper<SysUser> {
     /**
      * @description: 登录
      **/
-    SysUser loginFind(LoginVo loginVo);
+    SysUsrDto loginFind(LoginVo loginVo);
 
     /**
      * @description: 用户是否存在
      **/
-    SysUser isUser(LoginVo loginVo);
+    SysUsrDto isUser(LoginVo loginVo);
 
     /**
-     * @description: 注册账号
-     **/
-    Integer registeredUser(RegisteredVo registeredVo);
+     * 创建账号
+     * @param registeredVo
+     * @return
+     */
+    @Insert("INSERT INTO `sys_user` (`u_id`, `u_phone`, `u_start_time`,`u_pass`) VALUES (#{uId}, #{uPhone}, #{uStartTime},#{pass})")
+    Integer sysUsrIns(RegisteredVo registeredVo);
+
+    @Insert("INSERT INTO `usr_info` (`info_id`, `u_path`, `u_nikname`, `u_signature`, `school_id`,`u_sex`,`u_lab`) VALUES (#{uId}, #{uPath}, #{uNikname}, #{description}, #{schoolId},#{uSex},#{uLab})")
+    Integer usrInfoIns(RegisteredVo registeredVo);
+
+    @Insert("INSERT INTO `usr_vip` (`v_id`, `v_type`, `v_status`, `v_level`, `v_points`, `v_start_time`, `v_end_time`) VALUES (#{uId}, 'NOT', 'NOT', 0, 0, 0, 0)")
+    Integer usrVipIns(RegisteredVo registeredVo);
 }

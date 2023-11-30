@@ -6,6 +6,7 @@ import org.springframework.data.redis.core.*;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
@@ -235,5 +236,9 @@ public class RedisUtils {
      */
     public Long listSize(String key) {
         return listOperations.size(key);
+    }
+
+    public Set<Object> getSetFromRedis(String key) {
+        return setOperations.members(key);
     }
 }

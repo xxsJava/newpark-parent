@@ -19,6 +19,8 @@
         <module>newpark-common-redis</module>
         <module>newpark-common-mybatisPlus</module>
         <module>newpark-common-swagger</module>
+        <module>newpark-common-pojo</module>
+        <module>newpark-common-state-secrets</module>
     </modules>
 
     <properties>

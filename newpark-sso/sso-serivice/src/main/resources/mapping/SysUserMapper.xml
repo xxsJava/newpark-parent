@@ -3,17 +3,13 @@
 <mapper namespace="com.newpark.sso.sys.mapper.SysUserMapper">
 
     <sql id="all">
-        SELECT
-            u_id,
-            u_phone,
-            u_email,
-            u_pass,
-            u_start_time
-        FROM
-            sys_user
+        SELECT usr.u_id, u_phone, u_email, u_pass, u_start_time, role_id,info_id,vip_id
+        FROM sys_user as usr
+                 LEFT JOIN sys_role_divide as role ON usr.u_id = role.u_id
     </sql>
 
-    <select id="loginFind" parameterType="com.newpark.sso.entity.vo.LoginVo" resultType="com.newpark.sso.sys.entity.SysUser">
+    <select id="loginFind" parameterType="com.newpark.sso.entity.vo.LoginVo"
+            resultType="com.newpark.sso.entity.dto.SysUsrDto">
         <include refid="all"></include>
         <where>
             u_phone = #{uPhone}
@@ -24,24 +20,17 @@
         </where>
     </select>
 
-    <select id="isUser" parameterType="com.newpark.sso.entity.vo.LoginVo" resultType="com.newpark.sso.sys.entity.SysUser">
+    <select id="isUser" parameterType="com.newpark.sso.entity.vo.LoginVo"
+            resultType="com.newpark.sso.entity.dto.SysUsrDto">
         <include refid="all"></include>
         <where>
             <if test="uPhone != '' and uPhone != null">
                 u_phone = #{uPhone}
             </if>
             <if test="uEmail != '' and uEmail != null">
-                 u_email = #{uEmail}
+                u_email = #{uEmail}
             </if>
         </where>
     </select>
-
-    <insert id="registeredUser" parameterType="com.newpark.sso.entity.vo.RegisteredVo">
-        INSERT INTO `newpark`.`sys_user` (`u_id`, `u_phone`, `u_pass`, `u_start_time`)
-        VALUES (#{uId}, #{uPhone}, #{pass}, #{uStartTime});
-        INSERT INTO `newpark`.`usr_info` (`u_id`, `u_path`, `u_nikname`, `school_id`, `u_specialty`, `u_sex`)
-        VALUES (#{uId}, #{uPath}, #{uNikname}, #{schoolId}, #{uSpecialty}, #{uSex});
-
-    </insert>
 
 </mapper>

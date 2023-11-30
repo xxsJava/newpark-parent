@@ -20,16 +20,19 @@ public class LoginVo {
     /**
      * @description: 手机号
      **/
+    @NotNull(message = "手机号不可以为空")
     private String uPhone;
 
     /**
      * @description: 邮箱
      **/
+    @NotNull(message = "邮箱不可以为空")
     private String uEmail;
 
     /**
      * @description: 密码
      **/
+    @NotNull(message = "密码不可以为空")
     public String password;
 
 }

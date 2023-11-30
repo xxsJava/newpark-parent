@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.newpark.main.service.posts.mapper.PostsMapper">
+
+    <sql id="ALL">
+        SELECT t_id,
+               t_title,
+               t_context,
+               t_pub_time,
+               t_last_time,
+               t_author_id,
+               t_like_count,
+               t_forward_count,
+               t_type_id,
+               t_com_count,
+               school_id
+        FROM posts
+    </sql>
+
+    <sql id="ALLLABLE">
+        SELECT t_id,
+               t_title,
+               t_context,
+               t_pub_time,
+               t_last_time,
+               t_author_id,
+               t_like_count,
+               t_com_count,
+               t_forward_count,
+               t_browse_count,
+               t_type_id,
+               t_classify_id,
+               school_id,
+               t1.lable_text
+        FROM posts t
+                 LEFT JOIN posts_lable t1 ON t.t_id = t1.posts_id
+    </sql>
+
+    <select id="getPostsFindALL" parameterType="com.newpark.main.service.entity.vo.PostParamVo"
+            resultType="com.newpark.main.service.entity.dto.PostsDto">
+        <include refid="ALL"></include>
+        <where>
+            <if test="schoolId != null and schoolId != ''">
+                school_id = #{schoolId}
+            </if>
+            <if test="postsId != null and postsId != ''">
+                t_id = #{postsId}
+            </if>
+        </where>
+    </select>
+
+</mapper>

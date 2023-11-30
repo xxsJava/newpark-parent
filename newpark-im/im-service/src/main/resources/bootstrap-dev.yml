@@ -1,0 +1,17 @@
+spring:
+  cloud:
+    nacos:
+      config:
+        server-addr: 192.168.129.200:8848 #nacos中心地址
+        file-extension: yaml # 配置文件格式
+        shared-configs[0]:
+          data-id: all-service-dev.yaml # 配置要引入的配置
+          refresh: false
+        group: dev
+        namespace: ddc492bc-9d53-4330-b59c-8e2f3faffff7
+      discovery:
+        server-addr: 192.168.129.200:8848 #Nacos服务注册中心地址
+        group: dev
+        namespace: ddc492bc-9d53-4330-b59c-8e2f3faffff7
+      username: nacos
+      password: nacos

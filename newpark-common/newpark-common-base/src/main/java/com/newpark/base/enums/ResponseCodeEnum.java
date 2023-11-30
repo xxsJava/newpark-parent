@@ -37,6 +37,8 @@ public enum ResponseCodeEnum {
 
     UNPROCESABLE_ENTITY(422,"当创建一个对象时，发生一个验证错误"),
 
+    USR_NOT_FOUND(490,"404 not found"),
+
     FAILURE(500, "服务器发生错误"),
 
     /**
@@ -77,8 +79,9 @@ public enum ResponseCodeEnum {
     DATABASE_UPDATE_ROOT(2101, "根节点，不允许修改"),
     DATABASE_DELETE_ROOT(2102, "根节点，不允许删除"),
     DATABASE_UPDATE_CHILD(2103, "存在子节点，不允许修改"),
-    DATABASE_DELETE_CHILD(2104, "存在子节点，不允许删除");
-
+    DATABASE_DELETE_CHILD(2104, "存在子节点，不允许删除"),
+    LOGIN_VERIFY_CODE_SUCC(2105, "验证码已发送,请注意查收"),
+    LOGIN_VERIFY_CODE_SUCC1(2105, "请勿重复发送");
 
     private final int code;
     private final String msg;

@@ -1,28 +1,35 @@
 package com.newpark.gateway.filter;
 
+import java.util.LinkedList;
+import java.util.List;
+
 import javax.annotation.Resource;
 import javax.validation.Valid;
 import javax.validation.constraints.NotEmpty;
 
-import cn.hutool.core.util.ReUtil;
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
 import org.springframework.cloud.gateway.filter.GlobalFilter;
 import org.springframework.core.Ordered;
+import org.springframework.core.io.buffer.DataBuffer;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.server.RequestPath;
 import org.springframework.http.server.reactive.ServerHttpRequest;
+import org.springframework.http.server.reactive.ServerHttpResponse;
 import org.springframework.stereotype.Component;
 import org.springframework.web.server.ServerWebExchange;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.newpark.base.enums.ResponseCodeEnum;
+import com.newpark.base.model.vo.R;
 import com.newpark.base.util.JwtUtil;
 import com.newpark.redis.utils.RedisUtils;
 
+import cn.hutool.core.util.ReUtil;
+import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
-
-import java.util.LinkedList;
-import java.util.List;
-import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
  * @Author xxs18
@@ -37,15 +44,18 @@ public class AuthGlobalFilter implements GlobalFilter, Ordered {
     @Resource
     private RedisUtils redis;
     public static List<String> routs = new LinkedList<>();
+
     static {
         routs.add("/usr/.*");
     }
-
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
         log.info("开始执行权限认证");
         // 获取请求
         ServerHttpRequest request = exchange.getRequest();
+        // 获取响应信息
+        ServerHttpResponse response = exchange.getResponse();
+
         log.info("访问的接口---{}", request.getPath());
         // 放行指定url
         if (isRouts(request.getPath(), routs.size())) {
@@ -67,8 +77,9 @@ public class AuthGlobalFilter implements GlobalFilter, Ordered {
         } catch (Exception e) {
             log.info("没有访问权限,已被拦截");
             // 禁止访问
-            exchange.getResponse().setStatusCode(HttpStatus.FORBIDDEN);
-            return exchange.getResponse().setComplete();
+            // exchange.getResponse().setStatusCode(HttpStatus.FORBIDDEN);
+            // return exchange.getResponse().setComplete();
+            return response.writeWith(Flux.just(setDataBuffer(request, response)));
         }
 
         // 放行
@@ -83,12 +94,32 @@ public class AuthGlobalFilter implements GlobalFilter, Ordered {
     /**
      * @description: 路由规则匹配
      **/
-    public boolean isRouts(RequestPath routsURI, Integer size) {
+    private boolean isRouts(RequestPath routsURI, Integer size) {
         boolean isFlag = ReUtil.isMatch(routs.get(size - 1), routsURI.toString());
         if (size >= 0 || isFlag) {
             return isFlag;
         }
         return isRouts(routsURI, size - 1);
+    }
+
+    private final ObjectMapper objectMapper = new ObjectMapper();
+
+    /**
+     * 拦截返回响应数据提示
+     * @param request
+     * @param response
+     * @return
+     */
+    @SneakyThrows
+    private DataBuffer setDataBuffer(ServerHttpRequest request, ServerHttpResponse response) {
+        // 如果需要返回响应数据，可以通过修改响应信息来实现
+        response.setStatusCode(HttpStatus.OK);
+        response.getHeaders().setContentType(MediaType.APPLICATION_JSON);
+        byte[] dataBytes = objectMapper.writeValueAsBytes(R.failed(ResponseCodeEnum.USR_NOT_FOUND));
+
+        DataBuffer dataBuffer = response.bufferFactory().wrap(dataBytes);
+
+        return dataBuffer;
     }
 
 }
