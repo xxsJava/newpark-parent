@@ -26,7 +26,6 @@ public class PostsInsVo {
 
     @ApiModelProperty(value = "贴子id")
     @TableId(value = "t_id", type = IdType.AUTO)
-    @NotNull(message = ValidatedStrMsg.NOT_NULL_MSG)
     private Long tId;
 
     @ApiModelProperty(value = "帖子标题")

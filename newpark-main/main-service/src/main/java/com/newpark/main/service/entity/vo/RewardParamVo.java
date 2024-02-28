@@ -5,7 +5,7 @@ import lombok.Setter;
 
 /**
  * @Author xxs18
- * @Description
+ * @Description 悬赏条件查询
  * @Date 2023/11/24 17:25
  **/
 @Getter

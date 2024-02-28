@@ -34,22 +34,22 @@ public class Reward implements Serializable {
     @ApiModelProperty(value = "发布人id")
     private Long uId;
 
-    @ApiModelProperty(value = "发布时间")
+    @ApiModelProperty(value = "发布时间",required = true)
     private Long startTime;
 
-    @ApiModelProperty(value = "截止时间")
+    @ApiModelProperty(value = "截止时间",required = true)
     private Long endTime;
 
-    @ApiModelProperty(value = "悬赏标题")
+    @ApiModelProperty(value = "悬赏标题",required = true)
     private String rTitle;
 
-    @ApiModelProperty(value = "悬赏描述")
+    @ApiModelProperty(value = "悬赏描述",required = true)
     private String rDesc;
 
-    @ApiModelProperty(value = "悬赏金额RMB")
+    @ApiModelProperty(value = "悬赏金额RMB",required = true)
     private Double rMoney;
 
-    @ApiModelProperty(value = "描述图片")
+    @ApiModelProperty(value = "描述图片",required = true)
     private String rImgs;
 
 

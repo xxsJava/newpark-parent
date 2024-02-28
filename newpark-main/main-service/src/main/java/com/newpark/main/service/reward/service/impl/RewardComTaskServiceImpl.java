@@ -1,10 +1,13 @@
 package com.newpark.main.service.reward.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.newpark.main.service.config.IdGeneratorSnowflake;
 import com.newpark.main.service.entity.RewardComTask;
 import com.newpark.main.service.reward.mapper.RewardComTaskMapper;
 import com.newpark.main.service.reward.service.IRewardComTaskService;
 import org.springframework.stereotype.Service;
+
+import javax.annotation.Resource;
 
 /**
  * <p>
@@ -17,4 +20,16 @@ import org.springframework.stereotype.Service;
 @Service
 public class RewardComTaskServiceImpl extends ServiceImpl<RewardComTaskMapper, RewardComTask> implements IRewardComTaskService {
 
+    @Resource
+    private RewardComTaskMapper rewardComTaskMapper;
+
+    @Resource
+    private IdGeneratorSnowflake idGeneratorSnowflake;
+
+    @Override
+    public Boolean rewardComTaskIns(RewardComTask rewardComTask) {
+        rewardComTask.setRComId(idGeneratorSnowflake.snowflakeId());
+
+        return rewardComTaskMapper.insert(rewardComTask) >= 1;
+    }
 }

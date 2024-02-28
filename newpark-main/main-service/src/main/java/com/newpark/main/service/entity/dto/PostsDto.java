@@ -4,8 +4,10 @@ import java.io.Serializable;
 import java.util.List;
 
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.newpark.main.service.entity.PostsComments;
 import com.newpark.main.service.entity.PostsLabel;
 
 import io.swagger.annotations.ApiModel;
@@ -38,6 +40,14 @@ public class PostsDto implements Serializable {
     @ApiModelProperty(value = "帖子标题")
     private String tTitle;
 
+    @ApiModelProperty(value = "头像")
+    @TableField("u_path")
+    private String uPath;
+
+    @ApiModelProperty(value = "用户昵称")
+    @TableField("u_nikname")
+    private String uNikname;
+
     @ApiModelProperty(value = "帖子内容")
     private String tContext;
 
@@ -66,10 +76,15 @@ public class PostsDto implements Serializable {
     private Integer tTypeId;
 
     @ApiModelProperty(value = "学校id")
-    private Integer schoolId;
+    private Long schoolId;
 
     /**
      * 帖子标签
      */
     private List<PostsLabel> labs;
+
+    /**
+     * 评论热评
+     */
+    private List<PostsComments> postsComments;
 }

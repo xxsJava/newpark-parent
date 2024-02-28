@@ -13,4 +13,6 @@ import com.newpark.main.service.entity.RewardComTask;
  */
 public interface IRewardComTaskService extends IService<RewardComTask> {
 
+    Boolean rewardComTaskIns(RewardComTask rewardComTask);
+
 }

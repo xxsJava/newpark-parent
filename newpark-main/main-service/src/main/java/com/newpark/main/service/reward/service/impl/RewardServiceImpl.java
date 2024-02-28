@@ -10,6 +10,7 @@ import com.newpark.base.model.vo.R;
 import com.newpark.core.utils.StringUtils;
 import com.newpark.main.service.config.IdGeneratorSnowflake;
 import com.newpark.main.service.entity.Reward;
+import com.newpark.main.service.entity.vo.RewardParamVo;
 import com.newpark.main.service.reward.mapper.RewardMapper;
 import com.newpark.main.service.reward.service.IRewardService;
 import com.newpark.pojo.vo.PageInfoVo;
@@ -41,7 +42,7 @@ public class RewardServiceImpl extends ServiceImpl<RewardMapper, Reward> impleme
      * @return
      */
     @Override
-    public R<?> rewardFindAll(PageInfoVo pageInfoVo) {
+    public List<Reward> rewardFindAll(PageInfoVo pageInfoVo) {
         PageHelper.startPage(pageInfoVo.getPageNo(), pageInfoVo.getPageSize());
 
         QueryWrapper<Reward> queryWrapper = new QueryWrapper<>();
@@ -49,7 +50,7 @@ public class RewardServiceImpl extends ServiceImpl<RewardMapper, Reward> impleme
                 .notInSql("r_id", "SELECT r_id FROM reward_app");
         List<Reward> resultList = rewardMapper.selectList(queryWrapper);
 
-        return R.ok(PageInfo.of(resultList).getList());
+        return PageInfo.of(resultList).getList();
     }
 
     /**
@@ -58,12 +59,9 @@ public class RewardServiceImpl extends ServiceImpl<RewardMapper, Reward> impleme
      * @return
      */
     @Override
-    public R<?> rewardFindIns(Reward reward) {
+    public Boolean rewardFindIns(Reward reward) {
         reward.setRId(idGeneratorSnowflake.snowflakeId());
-        if(rewardMapper.insert(reward) >= 1){
-            return R.failed(ResponseCodeEnum.CREATED);
-        }
-        return R.failed(ResponseCodeEnum.PARAMETER_ERROR);
+        return rewardMapper.insert(reward) >= 1;
     }
 
     /**
@@ -72,16 +70,13 @@ public class RewardServiceImpl extends ServiceImpl<RewardMapper, Reward> impleme
      * @return
      */
     @Override
-    public R<?> rewardPubUpt(Reward reward) {
+    public Boolean rewardPubUpt(Reward reward) {
         UpdateWrapper<Reward> updateWrapper = new UpdateWrapper<>();
         updateWrapper.eq("r_id",reward.getRId())
                 .set(StringUtils.isNotBlank(reward.getRTitle()),"r_title",reward.getRTitle())
                 .set(StringUtils.isNotBlank(reward.getRDesc()),"r_desc",reward.getRDesc())
                 .set(StringUtils.isNotBlank(reward.getRImgs()),"r_imgs",reward.getRImgs());
-        if(rewardMapper.update(null,updateWrapper)>=1){
-            return R.failed(ResponseCodeEnum.CREATED);
-        }
-        return R.failed(ResponseCodeEnum.PARAMETER_ERROR);
+        return rewardMapper.update(null,updateWrapper)>=1;
     }
 
     /**
@@ -90,10 +85,21 @@ public class RewardServiceImpl extends ServiceImpl<RewardMapper, Reward> impleme
      * @return
      */
     @Override
-    public R<?> rewardPubDel(Long raId) {
-        if(rewardMapper.deleteById(raId) >= 1){
-            return R.failed(ResponseCodeEnum.NO_CONTENT);
-        }
-        return R.failed(ResponseCodeEnum.PARAMETER_ERROR);
+    public Boolean rewardPubDel(Long raId) {
+        return rewardMapper.deleteById(raId) >= 1;
+    }
+
+    /**
+     * 1. 条件查多单条数据
+     * @param rewardParamVo
+     * @return
+     */
+    @Override
+    public List<Reward> rewardFindOne(RewardParamVo rewardParamVo) {
+        QueryWrapper<Reward> queryWrap = new QueryWrapper<>();
+        queryWrap.eq(StringUtils.isNotNull(rewardParamVo.getRaId()),"r_id",rewardParamVo.getRaId());
+        queryWrap.eq(StringUtils.isNotNull(rewardParamVo.getUId()),"u_id",rewardParamVo.getUId());
+
+        return rewardMapper.selectList(queryWrap);
     }
 }

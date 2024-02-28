@@ -1,5 +1,6 @@
 package com.newpark.main.service;
 
+import com.newpark.base.enums.Buddha;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -16,11 +17,12 @@ import org.springframework.web.client.RestTemplate;
  **/
 @SpringBootApplication
 @MapperScan("com.newpark.main.service.*.mapper")
-@EnableFeignClients(basePackages = {"com.newpark.pay"})
+@EnableFeignClients(basePackages = {"com.newpark.im"})
 @EnableTransactionManagement
 public class MainApp {
     public static void main(String[] args) {
         SpringApplication.run(MainApp.class,args);
+        Buddha.getBuddha();
     }
 
     @Bean

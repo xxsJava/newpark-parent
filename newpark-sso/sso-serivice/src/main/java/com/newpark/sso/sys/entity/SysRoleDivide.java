@@ -44,5 +44,8 @@ public class SysRoleDivide implements Serializable {
     @TableField("vip_id")
     private Long vipId;
 
+    @ApiModelProperty(value = "新园币")
+    @TableField("new_park_coins")
+    private Integer newParkCoins;
 
 }

@@ -38,7 +38,7 @@ public interface PostsMapper extends BaseMapper<Posts> {
      * @param postsId
      * @return
      */
-    @Select("SELECT com_id,posts_id,com_content,start_time,com_support,com_parent_id,u_id FROM posts_comments WHERE com_parent_id = 0 AND posts_id = #{postsId}")
+    @Select("SELECT com_id,posts_id,com_content,u_path,u_nikname,start_time,com_support,com_parent_id,u_id FROM posts_comments t LEFT JOIN usr_info t1 ON t.u_id = t1.info_id WHERE com_parent_id = 0 AND posts_id = #{postsId}")
     List<PostsCommentsDto> postsReviewParentFindALL(@Param("postsId") Long postsId);
 
     @Insert("INSERT INTO `posts` (`t_id`, `t_title`, `t_context`, `t_pub_time`, `t_last_time`, `t_author_id`, `t_type_id`, `school_id`) VALUES (#{tId}, #{tTitle}, #{tContext}, #{tPubTime}, #{tLastTime}, #{tAuthorId},  #{tTypeId},  #{schoolId})")

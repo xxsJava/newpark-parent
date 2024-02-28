@@ -66,8 +66,4 @@ public class Posts implements Serializable {
     @ApiModelProperty(value = "学校id")
     private Integer schoolId;
 
-    /**
-     * 帖子标签
-     */
-    private List<PostsLabel> labs;
 }

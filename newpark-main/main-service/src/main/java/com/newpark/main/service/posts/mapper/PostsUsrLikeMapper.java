@@ -1,6 +1,7 @@
 package com.newpark.main.service.posts.mapper;
 
 
+import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.newpark.main.service.entity.PostsUsrLike;
 

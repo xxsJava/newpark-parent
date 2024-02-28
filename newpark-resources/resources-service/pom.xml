@@ -20,6 +20,20 @@
     <dependencies>
 
         <dependency>
+            <groupId>com.newpark.common</groupId>
+            <artifactId>newpark-common-pojo</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/com.qcloud/cos_api -->
+        <dependency>
+            <groupId>com.qcloud</groupId>
+            <artifactId>cos_api</artifactId>
+            <version>5.6.191</version>
+        </dependency>
+
+
+        <dependency>
             <groupId>com.newpark.swagger</groupId>
             <artifactId>newpark-common-swagger</artifactId>
             <version>0.0.1-SNAPSHOT</version>
@@ -77,6 +91,12 @@
             <groupId>com.alibaba.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
             <version>2021.0.1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.tencentcloudapi</groupId>
+            <artifactId>tencentcloud-sdk-java</artifactId>
+            <version>3.1.927</version>
+            <scope>compile</scope>
         </dependency>
 
     </dependencies>

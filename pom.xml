@@ -25,7 +25,6 @@
         <module>newpark-pay</module>
         <module>newpark-im</module>
         <module>newpark-resources</module>
-        <module>newpark-product</module>
     </modules>
 
     <properties>

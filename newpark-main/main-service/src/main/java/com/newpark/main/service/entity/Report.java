@@ -56,7 +56,7 @@ public class Report implements Serializable {
     @TableField("report_time")
     private Long reportTime;
 
-    @ApiModelProperty(value = "举报状态 (待处理、已处理)")
+    @ApiModelProperty(value = "举报状态 (待处理NO、已处理YES)")
     @TableField("status")
     private String status;
 

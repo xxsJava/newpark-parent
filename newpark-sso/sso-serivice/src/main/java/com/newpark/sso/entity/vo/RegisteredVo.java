@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.newpark.base.vali.ValidatedStrMsg;
 
 import cn.hutool.crypto.digest.MD5;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -28,11 +29,13 @@ public class RegisteredVo {
      * 头像
      */
     @TableField("u_path")
+    @ApiModelProperty(value = "头像",required = true)
     private String uPath;
 
     /**
      * 用户昵称
      */
+    @ApiModelProperty(value = "用户昵称",required = true)
     @TableField("u_nikname")
     @NotEmpty(message = ValidatedStrMsg.NOT_NULL_MSG)
     private String uNikname;
@@ -40,6 +43,7 @@ public class RegisteredVo {
     /**
      * 学校ID
      */
+    @ApiModelProperty(value = "学校ID",required = true)
     @TableField("school_id")
     @Positive(message = ValidatedStrMsg.ERROR_MSG)
     private Integer schoolId;
@@ -47,6 +51,7 @@ public class RegisteredVo {
     /**
      * 专业
      */
+    @ApiModelProperty(value = "专业",required = true)
     @TableField("u_specialty")
     private String uSpecialty;
 
@@ -54,6 +59,7 @@ public class RegisteredVo {
      * 性别
      */
     @TableField("u_sex")
+    @ApiModelProperty(value = "性别",required = true)
     @Min(value = 0, message = ValidatedStrMsg.ERROR_MSG)
     @Max(value = 1, message = ValidatedStrMsg.ERROR_MSG)
     private Integer uSex;
@@ -61,27 +67,31 @@ public class RegisteredVo {
     /**
      * 手机号
      */
+    @ApiModelProperty(value = "手机号",required = true)
     @TableField("u_phone")
-    @NotEmpty(message = ValidatedStrMsg.NOT_NULL_MSG)
-    @Size(min = 11,max = 11,message = ValidatedStrMsg.ERROR_MSG)
-    @Positive(message = ValidatedStrMsg.ERROR_MSG)
+    @Pattern(regexp = "^1[3-9]\\d{9}$",message = ValidatedStrMsg.PHONE_MSG)
     private String uPhone;
 
     /**
      * 注册时间
      */
+    @ApiModelProperty(value = "注册时间",required = true)
     @TableField("u_start_time")
+    @Positive
     private Long uStartTime;
 
     /**
      * 密码
      **/
-    @Pattern(regexp = "^(?=.*[a-zA-Z])(?=.*[0-9])[A-Za-z0-9]{8,16}$",message = ValidatedStrMsg.PASS_MSG)
+    @ApiModelProperty(value = "密码",required = true)
+    @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d!@#$%^&*]{8,20}$" , message = ValidatedStrMsg.PASS_MSG)
     private String pass;
+
 
     /**
      * 描述
      */
+    @ApiModelProperty(value = "描述",required = true)
     @NotEmpty(message = ValidatedStrMsg.NOT_NULL_MSG)
     @Size(max = 255,message = ValidatedStrMsg.RANGE_MSG)
     private String description;
@@ -89,13 +99,8 @@ public class RegisteredVo {
     /**
      * 兴趣爱好标签
      */
+    @ApiModelProperty(value = "兴趣爱好标签",required = true)
     @NotEmpty(message = ValidatedStrMsg.NOT_NULL_MSG)
     private String uLab;
 
-    public void setPass(String pass) {
-        this.pass = pass;
-        if (pass.length() >= 8 && pass.length() <= 16) {
-            this.pass = MD5.create().digestHex16(pass.trim());
-        }
-    }
 }

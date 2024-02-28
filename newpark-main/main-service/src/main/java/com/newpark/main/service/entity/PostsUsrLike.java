@@ -11,6 +11,9 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+
 /**
  * <p>
  * 点赞表
@@ -29,23 +32,27 @@ public class PostsUsrLike implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @ApiModelProperty(value = "点赞id")
-    @TableId(value = "like_id", type = IdType.AUTO)
-    private Integer likeId;
+    @TableId(value = "like_id")
+    private Long likeId;
 
     @ApiModelProperty(value = "贴子id")
-    private Integer postsId;
+    @NotNull
+    private Long postsId;
 
     @ApiModelProperty(value = "评论id")
-    private Integer comId;
+    @NotNull
+    private Long comId;
 
     @ApiModelProperty(value = "点赞时间")
-    private LocalDateTime likeTime;
+    @NotNull
+    private Long likeTime;
 
-    @ApiModelProperty(value = "1帖子 2评论")
+    @ApiModelProperty(value = "1正常 2已删除")
+    @NotNull
     private Integer likeType;
 
     @ApiModelProperty(value = "用户id")
-    private Integer uId;
+    private Long uId;
 
 
 }

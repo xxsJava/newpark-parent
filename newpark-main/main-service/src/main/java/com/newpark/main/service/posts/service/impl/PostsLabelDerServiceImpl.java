@@ -3,6 +3,7 @@ package com.newpark.main.service.posts.service.impl;
 import com.github.yulichang.query.MPJQueryWrapper;
 import com.newpark.base.enums.PrefixMsgEnum;
 import com.newpark.base.model.vo.R;
+import com.newpark.core.utils.SnowflakeIdWorker;
 import com.newpark.main.service.entity.Posts;
 import com.newpark.main.service.entity.PostsLabel;
 import com.newpark.main.service.entity.PostsLabelDer;
@@ -31,6 +32,8 @@ import java.util.stream.Collectors;
 @Service
 public class PostsLabelDerServiceImpl extends ServiceImpl<PostsLabelDerMapper, PostsLabelDer> implements IPostsLabelDerService {
 
+    private SnowflakeIdWorker snowflakeIdWorker = new SnowflakeIdWorker(1,10);
+
     @Resource
     private PostsMapper postsMapper;
 
@@ -42,10 +45,16 @@ public class PostsLabelDerServiceImpl extends ServiceImpl<PostsLabelDerMapper, P
      */
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public R postsIns(PostsInsVo postInsVo) {
+    public Boolean postsIns(PostsInsVo postInsVo) {
+
+        postInsVo.setTId(snowflakeIdWorker.nextId());
         //帖子新增
         postsMapper.postsIns(postInsVo);
-        return R.ok(saveBatch(postInsVo.getLabs(),postInsVo.getLabs().size()));
+        //标签设置帖子ID
+        postInsVo.getLabs().forEach(val -> {
+            val.setPostsId(postInsVo.getTId());
+        });
+        return saveBatch(postInsVo.getLabs(),postInsVo.getLabs().size());
     }
 
 

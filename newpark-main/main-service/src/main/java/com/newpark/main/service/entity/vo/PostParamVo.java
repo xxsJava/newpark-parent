@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Positive;
 
 /**
@@ -19,14 +20,13 @@ public class PostParamVo {
     /**
      * 学校id
      */
-    @NotNull(message = ValidatedStrMsg.NOT_NULL_MSG)
     @Positive(message = ValidatedStrMsg.ERROR_MSG)
     private Integer schoolId;
 
-    /**
-     * 帖子Id
-     */
-    @Positive(message = ValidatedStrMsg.ERROR_MSG)
-    private Long postsId;
 
+    /**
+     * 最新排序
+     */
+    @Pattern(regexp = "^(?i)(ASC|DESC)$",message = ValidatedStrMsg.ERROR_MSG)
+    private String tPubTimeSort;
 }

@@ -1,7 +1,8 @@
 package com.newpark.sso.sys.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.newpark.sso.sys.entity.SysRouts;
+import com.newpark.pojo.SysRouts;
+
 
 /**
  * <p>

@@ -1,12 +1,9 @@
 package com.newpark.resources.config;
 
-import cn.hutool.crypto.digest.MD5;
-import com.newpark.resources.utils.IdGeneratorSnowflake;
-import lombok.Getter;
-import lombok.Setter;
 import org.springframework.stereotype.Component;
 
-import javax.annotation.Resource;
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  * @Author xxs18

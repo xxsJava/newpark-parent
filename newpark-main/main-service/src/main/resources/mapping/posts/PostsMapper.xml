@@ -9,12 +9,14 @@
                t_pub_time,
                t_last_time,
                t_author_id,
+               t1.u_nikname,
+               t1.u_path,
                t_like_count,
                t_forward_count,
                t_type_id,
                t_com_count,
-               school_id
-        FROM posts
+               t.school_id
+        FROM posts t LEFT JOIN usr_info t1 ON t.t_author_id = t1.info_id
     </sql>
 
     <sql id="ALLLABLE">
@@ -41,10 +43,7 @@
         <include refid="ALL"></include>
         <where>
             <if test="schoolId != null and schoolId != ''">
-                school_id = #{schoolId}
-            </if>
-            <if test="postsId != null and postsId != ''">
-                t_id = #{postsId}
+                t.school_id = #{schoolId}
             </if>
         </where>
     </select>

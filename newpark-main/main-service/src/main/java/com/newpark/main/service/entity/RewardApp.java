@@ -10,6 +10,9 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+
 /**
  * <p>
  * 接受悬赏表
@@ -32,16 +35,17 @@ public class RewardApp implements Serializable {
     private Long appId;
 
     @ApiModelProperty(value = "申请人编号")
+    @NotNull
     private Long taskId;
 
-    @ApiModelProperty(value = "申请时间")
+    @ApiModelProperty(value = "申请时间",required = true)
     private Long appTime;
 
-    @ApiModelProperty(value = "悬赏任务编号")
+    @ApiModelProperty(value = "悬赏任务编号",required = true)
+    @NotNull
     private Long rId;
 
     @ApiModelProperty(value = "完成时间")
     private Long succTime;
-
 
 }

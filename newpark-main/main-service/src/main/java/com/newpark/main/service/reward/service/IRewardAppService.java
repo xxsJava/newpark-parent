@@ -14,4 +14,6 @@ import com.newpark.main.service.entity.RewardApp;
  */
 public interface IRewardAppService extends IService<RewardApp> {
 
+    Boolean rewardAppIns(RewardApp rewardApp);
+
 }

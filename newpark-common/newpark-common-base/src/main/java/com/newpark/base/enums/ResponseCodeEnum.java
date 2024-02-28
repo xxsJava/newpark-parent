@@ -81,7 +81,8 @@ public enum ResponseCodeEnum {
     DATABASE_UPDATE_CHILD(2103, "存在子节点，不允许修改"),
     DATABASE_DELETE_CHILD(2104, "存在子节点，不允许删除"),
     LOGIN_VERIFY_CODE_SUCC(2105, "验证码已发送,请注意查收"),
-    LOGIN_VERIFY_CODE_SUCC1(2105, "请勿重复发送");
+    LOGIN_VERIFY_CODE_SUCC1(2105, "请勿重复发送"),
+    PAY_CODE(11000,"支付系统繁忙!!!");
 
     private final int code;
     private final String msg;

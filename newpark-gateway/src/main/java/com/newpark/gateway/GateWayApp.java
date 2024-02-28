@@ -1,5 +1,6 @@
 package com.newpark.gateway;
 
+import com.newpark.base.enums.Buddha;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
@@ -17,6 +18,7 @@ import org.springframework.web.client.RestTemplate;
 public class GateWayApp {
     public static void main(String[] args) {
         SpringApplication.run(GateWayApp.class,args);
+        Buddha.getBuddha();
     }
 
     @Bean

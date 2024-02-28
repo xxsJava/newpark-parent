@@ -2,4 +2,4 @@ spring:
   application:
     name: newpark-pay
   profiles:
-    active: dev
+    active: test

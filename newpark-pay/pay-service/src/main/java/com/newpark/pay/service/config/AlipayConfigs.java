@@ -1,0 +1,26 @@
+package com.newpark.pay.service.config;
+
+import com.alipay.api.AlipayConfig;
+import lombok.Getter;
+import lombok.Setter;
+import org.springframework.stereotype.Component;
+
+/**
+ * @Author xxs18
+ * @Description
+ * @Date 2023/12/5 16:52
+ **/
+@Getter
+@Setter
+@Component
+public class AlipayConfigs extends AlipayConfig {
+
+    private String serverUrl = "https://openapi-sandbox.dl.alipaydev.com/gateway.do";
+    private String appId = "9021000122673887";
+    private String format = "json";
+    private String charset = "utf-8";
+    private String signType = "RSA2";
+    private String privateKey = "MIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQCTmoKrOTypqGFfSOUAPt6kz+Do5pl+lNarSz8twjr9ctX/SBEndi6HHC0vZ+n71wWljtmfWotkmQkgekaExs3A8le0f/GU6951+4Edif1lElPA3WfqwLd1dRhJRTxxVAiRsxKtU57ROFAHG9BQmJmkVfjMx2gk2qZbk+cZXoRKPmHSSE8iX++385T7lL+woB5X3+fT1mW9vOHiQel39Q2LMM7tdjrxmlxHxjPdUvN890PDgUnjisoxP+5ZAzlupUPgZYJkSFbwBgRmtPBXT0lJqpNkimp+cI7TLGfgY1x6eaLp1i9yyf+ntu+3VjmxQXzMOEkCmjszIFlDE79CJv15AgMBAAECggEANm+jhVZkowVwc93EZyTIo+vuvLZfIanuydnEgTHC47o4Zh/EA9O4MSgZGgSu7KxObtKSPAz+n6k5DntKCqnvNBuscOtGw2+B6e1JnwVHKMFrlhORwag1gOIghNU+B2XAi0uJtdbDGdI04YpGd5LwBwWV7qAULpNdCyUu89JB48cuOYD005t2k2zkemYKtG/1VQXKGDRp8zERyVhsqk5QEzRJLt2l+YJTjz7Q8HOhdPNwewueASxAficRVROCMP0KnM46mA0XctbwM8AHxfD2t72FRhluWWnt90YpRuU24gFMH9+RUvO1VQepkSe4MeEqxaoH+S8HZ8tOq+/BnPBbAQKBgQD4oLnX+QKkMmyUWCZutYJM84U3L49lW1qYfC8AufiWiFZQ2rU1qamnJpaTmq3Bw+btZBcOZa/WKleyjh5ZyLBgpbsQFXJLvS6LcEg7flzVPUXFFHlGMNiakcS8ZjT1e68sVzBTYR6Kt8DwqdH2D4XgxZH3uporYWU7MZzNP+ba8QKBgQCX+u75GAiPV0+hYno7F/CdgPYD5F9hvzLDInnL1yQ+OU/YAVqMVViZqNGR/ZTtKuobiqYmFpAYVLJkH77QpS5R2ZLrEiY6T5rAC+F+tAm6DT0TlgyPvFum4aJMoOYrb6dMLDVyzcQyI31ENSMPnCBD+rx1N2cybI1QcziQuk/7CQKBgHXa6n2AIkpnRKUFLCKqk7uaa/l+6ABpz4Ycx8MWZMomkpP9OIzZgfwkBJivZ9JD5MF/ApbmiPWCWNPhHm38/e6yYPv8zpMseFXMwdDB04uZYetMCzjEisiqdJHB+TSsjpr8MYI0tV+YPzNVrJtxPEsSHGFL6SzLHEt09xksQ2hhAoGAWYZicO8cU7ud17YXxGmUvmLyCFblbMHhGBtd3Zps6g5+nwIlIZdAqrtMQBA9QvvNjc29k6Ak34A82Uft8h/rSiG9LqWxSRYNVWVqPmW1eRhFSx1PZvgQkRxGq5b4HswVo4RDM85L7TEEoEIg1hgk1YaErxOkwYo6MBK/Vlm5tWkCgYA0Bab9mmIjArPXQPwtL2miQUMn+R1BeW+cWZ+CLQLUyoHSdy/6UtrOjD11G4bCL2OPq8nfnjZVpWYt/Yz4O7nsxwqu1cnbaPSHfaytDA+KaX/cqN7HnybGs+2I7rrV1Siee+J4IZun8mwFO4r9XwOQEkCcwQ/Fxoby56D/1cMrmA==";
+    private String alipayPublicKey = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAnCwOq+aPShLfaOri4EPCRydEb/3GHpKd4pZvMFSWK6MQzN0tIV7i5kXqPlwgROhsE/P+FsNFXD4DNJU9KEUr7nYvLWND/xs5AwzIEl0OjTOyTHyKq5c9apMaxXWZMYRqz1IbekmQ0XexU2ltwCyNY4mJxcu/LY7cTdqICkiCsjwlOQE8JsAtPZhCi4keRYrMsPvSmT8vuwpVjfx/F78HtnR7ENZABleRBFXdY9Wm27LPP+o2VQC8fCxcIYTZuuMo89TkHFmpa6S+swVSMC+IxFXR7boTBuO7BymaUnMfTYrRg2dctyjG6AaiqfLwXd5nRtZZEcv5s8FEH7sEWmU+FwIDAQAB";
+
+}

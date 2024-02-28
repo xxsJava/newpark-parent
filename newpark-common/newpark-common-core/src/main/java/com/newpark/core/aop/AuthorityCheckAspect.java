@@ -27,7 +27,7 @@ import org.springframework.stereotype.Component;
 public class AuthorityCheckAspect {
 
 
-    @Pointcut("execution(* com.newpark.*.controller..*.*(..))&&@annotation(com.zh.mustang.common.base.annotation.AuthorityCheck)")
+    @Pointcut("execution(* com.newpark.*.controller..*.*(..))&&@annotation(com.newpark.base.annotation.AuthorityCheck)")
     public void pointCut() {
 
     }

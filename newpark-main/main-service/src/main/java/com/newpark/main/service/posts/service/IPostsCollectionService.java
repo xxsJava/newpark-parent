@@ -3,8 +3,11 @@ package com.newpark.main.service.posts.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.newpark.base.model.vo.R;
+import com.newpark.main.service.entity.Posts;
 import com.newpark.main.service.entity.PostsCollection;
 import com.newpark.pojo.vo.PageInfoVo;
+
+import java.util.List;
 
 /**
  * <p>
@@ -16,10 +19,10 @@ import com.newpark.pojo.vo.PageInfoVo;
  */
 public interface IPostsCollectionService extends IService<PostsCollection> {
 
-    R<?> collectionFindAll(PageInfoVo pageInfoVo);
+    List<Object> collectionFindAll(PageInfoVo pageInfoVo,Long uId);
 
-    R<?> collectionFindIns();
+    Boolean collectionFindIns(PostsCollection postsCollection);
 
-    R<?> collectionDel(Long coId);
+    Boolean collectionDel(Long coId);
 
 }

@@ -32,13 +32,15 @@ public class PostsCollection implements Serializable {
     private Long cId;
 
     @ApiModelProperty(value = "用户id")
-    private Long cUId;
+    private Long uId;
 
     @ApiModelProperty(value = "帖子id")
-    private Long cTId;
+    private Long tId;
+
+    @ApiModelProperty(value = "收藏类型(帖子POSTS、消息MSG、ORDER商品)")
+    private String cType;
 
     @ApiModelProperty(value = "收藏时间")
-    private LocalDateTime cCollTime;
-
+    private Long cCollTime;
 
 }

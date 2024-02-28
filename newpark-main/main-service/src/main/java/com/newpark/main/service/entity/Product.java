@@ -31,29 +31,29 @@ public class Product implements Serializable {
     @TableId(value = "p_id", type = IdType.ID_WORKER)
     private Long pId;
 
-    @ApiModelProperty(value = "商品名称")
+    @ApiModelProperty(value = "商品名称",required = true)
     private String pName;
 
-    @ApiModelProperty(value = "商品描述")
+    @ApiModelProperty(value = "商品描述",required = true)
     private String pDesc;
 
-    @ApiModelProperty(value = "商品图片")
+    @ApiModelProperty(value = "商品图片",required = true)
     private String pImgs;
 
-    @ApiModelProperty(value = "商品价格")
+    @ApiModelProperty(value = "商品价格",required = true)
     private Double pPrice;
 
     @ApiModelProperty(value = "商品发布人ID")
     private Long uId;
 
-    @ApiModelProperty(value = "商品状态(审核AUDIT、待售FORSALE、已售SOLD、下架TOTH)")
+    @ApiModelProperty(value = "商品状态(审核AUDIT、待售FORSALE、已售SOLD、下架TOTH)",required = true)
     private String pStatus;
 
-    @ApiModelProperty(value = "商品发布时间")
+    @ApiModelProperty(value = "商品发布时间",required = true)
     private Long pPubTime;
 
-    @ApiModelProperty(value = "商品备注")
-    private String pOthe;
+    @ApiModelProperty(value = "商品备注",required = true)
+    private String pOther;
 
 
 }

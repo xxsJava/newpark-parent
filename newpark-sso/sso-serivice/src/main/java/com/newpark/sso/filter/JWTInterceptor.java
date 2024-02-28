@@ -32,7 +32,7 @@ public class JWTInterceptor implements HandlerInterceptor {
         String tokenKey = redis.get(token);
 
         // token 不存在 避免穿透
-        if (tokenKey == null || tokenKey.length() == 0) {
+        if (tokenKey == null || tokenKey.isEmpty()) {
             redis.set("token", token, 1000 * 60);
         }
         return true;

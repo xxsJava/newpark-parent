@@ -45,16 +45,24 @@ public class Constant {
      */
     public class Token {
         //请求头
-        public final static String REQUEST_HEADER = "reds-access-token";
+        public final static String REQUEST_HEADER = "Content-TOKEN";
         //生成token密钥
         public final static String SECRET_KEY = "!@#$%^&*()/";
         //签发者
-        public final static String ISSUER = "mustang";
+        public final static String ISSUER = "newpark";
         //过期时间
         public final static String EXPIRE_TIME = "43200";
         //token内容参数
-        public final static String CLAIM_USER = "userId";
-        public final static String CLAIM_PARENT = "parentId";
+        //用户ID
+        public final static String CLAIM_USER = "uId";
+        //角色ID
+        public final static String CLAIM_ROLE_ID = "roleId";
+        //用户详情信息ID
+        public final static String CLAIM_INFO_ID = "infoId";
+        //用户会员信息ID
+        public final static String CLAIM_VIP_ID = "vipId";
+        //新园钱包
+        public final static String CLAIM_NEW_PARK_COINS = "newParkCoins";
         //redis缓存前缀
         public static final String CACHE_PREFIX = "app-token:";
     }
@@ -76,7 +84,7 @@ public class Constant {
     }
 
     //用户默认密码
-    public final static String INITIAL_PASSWORD = "Aa123456";
+    public final static String INITIAL_PASSWORD = "Ee123456";
 
     /**
      * 角色

@@ -2,6 +2,7 @@ package com.newpark.main.service.posts.controller;
 
 
 import com.newpark.main.service.entity.vo.PostReviewParamVo;
+import com.newpark.main.service.posts.service.IPostsCommentsService;
 import com.newpark.main.service.posts.service.IPostsService;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -14,6 +15,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * <p>
@@ -31,29 +33,31 @@ public class PostsCommentsController {
     @Resource
     private IPostsService iPostsService;
 
+    @Resource
+    private IPostsCommentsService iPostsCommentsService;
+
     @GetMapping("/postsCommentsApi")
     @ApiOperation(notes = "帖子评论查询API", value = "帖子评论查询API")
-    public R<?> postsReviewFindAll(@Validated PageInfoVo pageInfo, @Validated PostReviewParamVo postReviewParamVo) {
-        return iPostsService.postsReviewParentFindAll(pageInfo, postReviewParamVo);
+    public R<?> postsReviewFindAll(@Validated PageInfoVo pageInfo,@Validated PostReviewParamVo postReviewParamVo) {
+        return R.ok(iPostsService.postsReviewParentFindAll(pageInfo, postReviewParamVo));
     }
+
     @PostMapping("/postsCommentsApi")
     @ApiOperation(notes = "发布评论API", value = "发布评论API")
-    public R setPostsComIns(@RequestBody PostsComments postsComs){
+    public R<?> setPostsComIns(@RequestBody PostsComments postsComs){
 
         return R.ok(postsComs);
     }
 
     @DeleteMapping("/postsCommentsApi/{comId}")
     @ApiOperation(notes = "删除评论API", value = "删除评论API")
-    public R setPostsComDel(@PathVariable("comId") Long comId){
-
+    public R<?> setPostsComDel(@PathVariable("comId") Long comId){
         return R.ok(comId);
     }
 
     @PutMapping("/postsCommentsApi")
     @ApiOperation(notes = "编辑评论API", value = "编辑评论API")
-    public R setPostsComPut(@RequestBody PostsComments postsComments){
-
-        return R.ok(postsComments);
+    public R<?> setPostsComPut(@RequestBody PostsComments postsComments){
+        return R.ok(iPostsCommentsService.setPostsComPut(postsComments));
     }
 }

@@ -1,5 +1,7 @@
 package com.newpark.gateway.filter;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -7,6 +9,7 @@ import javax.annotation.Resource;
 import javax.validation.Valid;
 import javax.validation.constraints.NotEmpty;
 
+import com.newpark.gateway.config.GatewayStaticRouts;
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
 import org.springframework.cloud.gateway.filter.GlobalFilter;
 import org.springframework.core.Ordered;
@@ -43,11 +46,7 @@ public class AuthGlobalFilter implements GlobalFilter, Ordered {
 
     @Resource
     private RedisUtils redis;
-    public static List<String> routs = new LinkedList<>();
 
-    static {
-        routs.add("/usr/.*");
-    }
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
         log.info("开始执行权限认证");
@@ -58,10 +57,11 @@ public class AuthGlobalFilter implements GlobalFilter, Ordered {
 
         log.info("访问的接口---{}", request.getPath());
         // 放行指定url
-        if (isRouts(request.getPath(), routs.size())) {
+        if (isRouts(request.getPath(), GatewayStaticRouts.ROUTS.size())) {
             log.info("放行指定接口");
             return chain.filter(exchange);
         }
+
         // 登录认证
         // 获取token
         String token = "";
@@ -95,7 +95,7 @@ public class AuthGlobalFilter implements GlobalFilter, Ordered {
      * @description: 路由规则匹配
      **/
     private boolean isRouts(RequestPath routsURI, Integer size) {
-        boolean isFlag = ReUtil.isMatch(routs.get(size - 1), routsURI.toString());
+        boolean isFlag = ReUtil.isMatch(GatewayStaticRouts.ROUTS.get(size - 1), routsURI.toString());
         if (size >= 0 || isFlag) {
             return isFlag;
         }
@@ -117,9 +117,7 @@ public class AuthGlobalFilter implements GlobalFilter, Ordered {
         response.getHeaders().setContentType(MediaType.APPLICATION_JSON);
         byte[] dataBytes = objectMapper.writeValueAsBytes(R.failed(ResponseCodeEnum.USR_NOT_FOUND));
 
-        DataBuffer dataBuffer = response.bufferFactory().wrap(dataBytes);
-
-        return dataBuffer;
+        return response.bufferFactory().wrap(dataBytes);
     }
 
 }

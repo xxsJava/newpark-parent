@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 
@@ -40,6 +41,14 @@ public class PostsCommentsDto implements Serializable {
 
     @ApiModelProperty(value = "用户id")
     private Integer uId;
+
+    @ApiModelProperty(value = "头像")
+    @TableField("u_path")
+    private String uPath;
+
+    @ApiModelProperty(value = "用户昵称")
+    @TableField("u_nikname")
+    private String uNikname;
 
     @ApiModelProperty(value = "评论内容")
     private String comContent;

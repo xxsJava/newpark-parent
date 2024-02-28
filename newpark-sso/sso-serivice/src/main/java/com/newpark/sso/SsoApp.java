@@ -1,10 +1,12 @@
 package com.newpark.sso;
 
 import cn.shuibo.annotation.EnableSecurity;
+import com.newpark.base.enums.Buddha;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
+import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.client.RestTemplate;
@@ -16,11 +18,13 @@ import org.springframework.web.client.RestTemplate;
  **/
 @SpringBootApplication
 @MapperScan("com.newpark.sso.sys.mapper")
+@EnableFeignClients(basePackages = {"com.newpark.im"})
 @EnableSecurity
 @EnableTransactionManagement
 public class SsoApp {
     public static void main(String[] args) {
         SpringApplication.run(SsoApp.class,args);
+        Buddha.getBuddha();
     }
 
     @Bean

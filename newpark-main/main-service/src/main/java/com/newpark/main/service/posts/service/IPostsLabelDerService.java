@@ -19,6 +19,6 @@ import java.util.List;
  */
 public interface IPostsLabelDerService extends IService<PostsLabelDer> {
 
-    R postsIns(PostsInsVo postInsVo);
+    Boolean postsIns(PostsInsVo postInsVo);
 
 }

@@ -1,11 +1,10 @@
 package com.newpark.sso.sys.mapper;
 
-import com.baomidou.mybatisplus.annotation.SqlParser;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.newpark.sso.entity.dto.SysUsrDto;
+
+import com.newpark.pojo.dto.SysUsrDto;
 import com.newpark.sso.entity.vo.LoginVo;
 import com.newpark.sso.entity.vo.RegisteredVo;
-import com.newpark.sso.entity.vo.SysUsrVo;
 import com.newpark.sso.sys.entity.SysUser;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;

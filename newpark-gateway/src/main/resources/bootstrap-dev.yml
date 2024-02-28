@@ -10,14 +10,11 @@ spring:
         shared-configs[1]:
           data-id: all-zipkin-dev.yaml # 配置要引入的配置
           refresh: false
-        shared-configs[2]:
-          data-id: logback-spring-dev.xml # 配置要引入的配置
-          refresh: false
         group: dev
-        namespace: ddc492bc-9d53-4330-b59c-8e2f3faffff7
+        namespace: 1cafda16-a924-47e2-8d65-6014e55489a8
       discovery:
         server-addr: 192.168.129.200:8848 #Nacos服务注册中心地址
         group: dev
-        namespace: ddc492bc-9d53-4330-b59c-8e2f3faffff7
+        namespace: 1cafda16-a924-47e2-8d65-6014e55489a8
       username: nacos
       password: nacos

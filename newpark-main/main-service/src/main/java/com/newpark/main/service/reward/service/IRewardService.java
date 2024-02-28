@@ -4,8 +4,11 @@ package com.newpark.main.service.reward.service;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.newpark.base.model.vo.R;
 import com.newpark.main.service.entity.Reward;
+import com.newpark.main.service.entity.vo.RewardParamVo;
 import com.newpark.pojo.vo.PageInfoVo;
 import org.springframework.validation.annotation.Validated;
+
+import java.util.List;
 
 /**
  * <p>
@@ -17,11 +20,13 @@ import org.springframework.validation.annotation.Validated;
  */
 public interface IRewardService extends IService<Reward> {
 
-    R<?> rewardFindAll(PageInfoVo pageInfoVo);
+    List<Reward> rewardFindAll(PageInfoVo pageInfoVo);
 
-    R<?> rewardFindIns(Reward reward);
+    Boolean rewardFindIns(Reward reward);
 
-    R<?> rewardPubUpt(Reward reward);
+    Boolean rewardPubUpt(Reward reward);
 
-    R<?> rewardPubDel(Long raId);
+    Boolean rewardPubDel(Long raId);
+
+    List<Reward> rewardFindOne(RewardParamVo rewardParamVo);
 }

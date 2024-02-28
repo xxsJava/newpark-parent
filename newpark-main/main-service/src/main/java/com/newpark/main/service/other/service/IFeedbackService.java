@@ -3,6 +3,9 @@ package com.newpark.main.service.other.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.newpark.main.service.entity.Feedback;
+import com.newpark.pojo.vo.PageInfoVo;
+
+import java.util.List;
 
 /**
  * <p>
@@ -14,4 +17,9 @@ import com.newpark.main.service.entity.Feedback;
  */
 public interface IFeedbackService extends IService<Feedback> {
 
+    List<Feedback> feedbackFindByAll(PageInfoVo pageInfoVo);
+
+    Boolean feedbackFindIns(Feedback feedback);
+
+    Boolean feedbackFindUpt(Long feedbackId,String status);
 }

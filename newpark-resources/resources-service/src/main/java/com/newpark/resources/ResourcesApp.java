@@ -1,5 +1,6 @@
 package com.newpark.resources;
 
+import com.newpark.base.enums.Buddha;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
@@ -16,6 +17,7 @@ public class ResourcesApp {
 
     public static void main(String[] args) {
         SpringApplication.run(ResourcesApp.class,args);
+        Buddha.getBuddha();
     }
 
     @Bean

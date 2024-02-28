@@ -5,10 +5,9 @@ import cn.shuibo.annotation.Encrypt;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.newpark.base.model.vo.R;
 import com.newpark.main.service.entity.Posts;
-import com.newpark.main.service.entity.vo.PostParamVo;
-import com.newpark.main.service.entity.vo.PostReviewParamVo;
-import com.newpark.main.service.entity.vo.PostUptVo;
-import com.newpark.main.service.entity.vo.PostsInsVo;
+import com.newpark.main.service.entity.dto.PostsCommentsDto;
+import com.newpark.main.service.entity.dto.PostsDto;
+import com.newpark.main.service.entity.vo.*;
 import com.newpark.pojo.vo.PageInfoVo;
 
 import java.util.List;
@@ -29,7 +28,9 @@ public interface IPostsService extends IService<Posts> {
      * @param postParamVo
      * @return
      */
-    R getPostsFindAll(PageInfoVo pageInfoVo,PostParamVo postParamVo);
+    List<PostsDto> postsFindAll(PageInfoVo pageInfoVo,PostParamVo postParamVo);
+
+    R<?> postsFIndIsByAll(PostsIsParamVo postsIsParamVo);
 
     /**
      * 查询帖子评论和回复
@@ -37,19 +38,21 @@ public interface IPostsService extends IService<Posts> {
      * @param postReviewParamVo
      * @return
      */
-    R postsReviewParentFindAll(PageInfoVo pageInfoVo, PostReviewParamVo postReviewParamVo);
+    List<PostsCommentsDto> postsReviewParentFindAll(PageInfoVo pageInfoVo, PostReviewParamVo postReviewParamVo);
 
     /**
      * 帖子编辑
      * @param postUpt
      * @return
      */
-    R postsUpt(PostUptVo postUpt);
+    Boolean postsUpt(PostUptVo postUpt);
 
     /**
      * 删除帖子
      * @param tId
      * @return
      */
-    R postsDel(Long tId);
+    Boolean postsDel(Long tId);
+
+
 }

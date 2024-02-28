@@ -25,6 +25,7 @@ public enum PrefixMsgEnum {
      * @description: 用户token
      **/
     MSG_PR_TOKEN("token_pr_newpark_"),
+    USR_INFO("usr_info_"),
     /**
      * @description: redis 过期时间 60s
      **/

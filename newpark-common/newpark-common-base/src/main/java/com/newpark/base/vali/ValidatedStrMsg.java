@@ -20,5 +20,9 @@ public class ValidatedStrMsg {
 
     public final static String RANGE_MSG = "超出取值范围";
 
-    public final static String PASS_MSG = "密码必须包含英文和数字,8-16位";
+    public final static String PASS_MSG =
+        "长度为 8 到 20 个字符\n" + "必须包含至少一个大写字母\n" + "必须包含至少一个小写字母\n" + "必须包含至少一个数字\n" + "可以包含特殊字符（例如：!@#$%^&*）";
+
+    public final static String PHONE_MSG = "手机号错误";
+
 }

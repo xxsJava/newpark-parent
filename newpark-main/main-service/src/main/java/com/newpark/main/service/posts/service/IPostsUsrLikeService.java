@@ -3,6 +3,10 @@ package com.newpark.main.service.posts.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.newpark.main.service.entity.PostsUsrLike;
+import com.newpark.main.service.entity.vo.PostsUsrLikeVo;
+import com.newpark.pojo.vo.PageInfoVo;
+
+import java.util.List;
 
 /**
  * <p>
@@ -14,4 +18,11 @@ import com.newpark.main.service.entity.PostsUsrLike;
  */
 public interface IPostsUsrLikeService extends IService<PostsUsrLike> {
 
+    Boolean postsUsrLikeIns(PostsUsrLike postsUsrLike);
+
+    Boolean postsUsrLikeUpt(PostsUsrLikeVo postsUsrLikeVo);
+
+    Boolean postsUsrLikeDel(Long likeId);
+
+    List<PostsUsrLike> postsUsrLikeFindAll(PageInfoVo pageInfoVo);
 }

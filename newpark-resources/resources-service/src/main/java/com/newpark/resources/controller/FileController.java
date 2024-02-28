@@ -1,6 +1,8 @@
 package com.newpark.resources.controller;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -64,9 +66,11 @@ public class FileController {
     @PostMapping("/videosIDApi")
     @ApiOperation(notes = "视频切片上传配置 API", value = "视频切片上传配置 API")
     public R<?> uploadVideosId() {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+        String dataPath = dateFormat.format(new Date());
         String endPointStr = endPoint.substring(endPoint.lastIndexOf("oss"));
         uploadConfig.setUploadId(MD5.create().digestHex16(idGeneratorSnowflake.snowflakeId() + ""));
-        uploadConfig.setPrefix("https://" + bucketName + "." + endPointStr + "/" + uploadConfig.getUploadId());
+        uploadConfig.setPrefix("https://" + bucketName + "." + endPointStr + "/" +dataPath+"/video/" + uploadConfig.getUploadId());
         return R.ok(uploadConfig);
     }
 

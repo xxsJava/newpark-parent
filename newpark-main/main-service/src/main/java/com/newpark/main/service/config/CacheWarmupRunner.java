@@ -19,8 +19,9 @@ public class CacheWarmupRunner implements CommandLineRunner {
     private CacheWarmupService cacheWarmupService;
 
     @Override
-    public void run(String... args) throws Exception {
+    public void run(String... args) {
         log.info("redis开始预热");
         cacheWarmupService.warmup();
     }
+
 }

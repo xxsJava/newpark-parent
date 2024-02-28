@@ -9,26 +9,20 @@
     </sql>
 
     <select id="loginFind" parameterType="com.newpark.sso.entity.vo.LoginVo"
-            resultType="com.newpark.sso.entity.dto.SysUsrDto">
+            resultType="com.newpark.pojo.dto.SysUsrDto">
         <include refid="all"></include>
         <where>
             u_phone = #{uPhone}
             and u_pass = #{password}
-            <if test="uEmail != '' and uEmail != null">
-                or u_email = #{uEmail}
-            </if>
         </where>
     </select>
 
     <select id="isUser" parameterType="com.newpark.sso.entity.vo.LoginVo"
-            resultType="com.newpark.sso.entity.dto.SysUsrDto">
+            resultType="com.newpark.pojo.dto.SysUsrDto">
         <include refid="all"></include>
         <where>
             <if test="uPhone != '' and uPhone != null">
                 u_phone = #{uPhone}
-            </if>
-            <if test="uEmail != '' and uEmail != null">
-                u_email = #{uEmail}
             </if>
         </where>
     </select>

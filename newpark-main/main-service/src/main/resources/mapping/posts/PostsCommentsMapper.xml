@@ -2,4 +2,24 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.newpark.main.service.posts.mapper.PostsCommentsMapper">
 
+    <select id="collectionFindAll" resultType="com.newpark.main.service.entity.PostsComments">
+        SELECT com_id, posts_id, u_id, com_content, start_time, com_support, com_parent_id,t1.u_path,t1.u_nikname
+        FROM (SELECT com_id, posts_id, u_id, com_content, start_time, com_support, com_parent_id
+        FROM posts_comments
+        WHERE (posts_id IN <foreach collection="comIds" item="comId" open="(" separator="," close=")">
+        #{comId}
+    </foreach>)
+        ORDER BY com_support DESC LIMIT 9999) t
+        LEFT JOIN usr_info t1 ON t.u_id = t1.info_id
+        GROUP BY t.posts_id
+    </select>
+
+
+    <select id="postsCommentsFindAll" resultType="com.newpark.main.service.entity.PostsComments">
+        SELECT com_id,posts_id,u_id,u_path,u_nikname,com_content,start_time,com_support,com_parent_id FROM
+        posts_comments t LEFT JOIN usr_info t1 ON t.u_id = t1.info_id
+        WHERE (com_parent_id IN <foreach collection="comIds" item="comId" open="(" separator="," close=")">
+        #{comId}
+    </foreach>)
+    </select>
 </mapper>

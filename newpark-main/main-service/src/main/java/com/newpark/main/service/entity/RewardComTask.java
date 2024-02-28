@@ -10,6 +10,9 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+
 /**
  * <p>
  * 悬赏完成表
@@ -29,18 +32,22 @@ public class RewardComTask implements Serializable {
 
     @ApiModelProperty(value = "完成表编号")
     @TableId(value = "r_com_id", type = IdType.ID_WORKER)
-    private Integer rComId;
+    private Long rComId;
 
     @ApiModelProperty(value = "申请人编号")
-    private Integer uId;
+    @NotNull
+    private Long uId;
 
     @ApiModelProperty(value = "完成时间时间")
+    @NotNull
     private Long endTime;
 
     @ApiModelProperty(value = "悬赏任务编号")
-    private Integer rId;
+    @NotNull
+    private Long rId;
 
     @ApiModelProperty(value = "完成证明")
+    @NotEmpty
     private String rProof;
 
 
